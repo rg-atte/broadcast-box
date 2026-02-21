@@ -77,6 +77,21 @@ func getProfileFileNameByStreamKey(streamKey string) (string, error) {
 	return "", fmt.Errorf("could not find profile file")
 }
 
+func getBearerTokenByStreamKey(streamKey string) (string, error) {
+	profileFileName, err := getProfileFileNameByStreamKey(streamKey)
+	if err != nil {
+		return "", err
+	}
+
+	profileParts := strings.Split(profileFileName, "_")
+
+	if len(profileParts) < 2 {
+		return "", fmt.Errorf("profile file name format is invalid")
+	}
+	bearerToken := profileParts[1]
+	return bearerToken, nil
+}
+
 func getProfileFileNameByBearerToken(bearerToken string) (string, error) {
 	profilePath := os.Getenv(environment.StreamProfilePath)
 
