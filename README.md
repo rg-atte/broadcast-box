@@ -1,14 +1,16 @@
 # Fork purpose
 
-The purpose of this fork is to enable automatic profile management when used together with an authenticating proxy such as [oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy) with the `--set-xauthrequest` option which enables us to get a somewhat trustable http header which contains the username of an authenticated user.
+The purpose of this fork is to enable automatic profile management when used together with an authenticating proxy such as [oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy) which provides us with a `X-Forwarded-User` header.
 
 ## Added env variables
 
 | Variable                             | Description                                                              |
 | ------------------------------------ | ------------------------------------------------------------------------ |
-| `AUTHENTICATED_USER_HEADER` | Header which is checked for an authenticated user name. e.g. `X-Auth-Request-User`                  |
+| `AUTHENTICATED_USER_HEADER` | Header which is checked for an authenticated user name. e.g. `X-Forwarded-User`                  |
 
-## Disclaimer
+## Disclaimers
+
+Do not expose this server without a reverse proxy which strips away whichever header is used for `AUTHENTICATED_USER_HEADER` sent by the user. Otherwise it would enable someone to get and reset the stream token of another user.
 
 Everything in this fork was quickly hacked together, use at your own risk.
 
