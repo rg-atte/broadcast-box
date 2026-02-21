@@ -1,3 +1,17 @@
+# Fork purpose
+
+The purpose of this fork is to enable automatic profile management when used together with an authenticating proxy such as [oauth2-proxy](https://github.com/oauth2-proxy/oauth2-proxy) with the `--set-xauthrequest` option which enables us to get a somewhat trustable http header which contains the username of an authenticated user.
+
+## Added env variables
+
+| Variable                             | Description                                                              |
+| ------------------------------------ | ------------------------------------------------------------------------ |
+| `AUTHENTICATED_USER_HEADER` | Header which is checked for an authenticated user name. e.g. `X-Auth-Request-User`                  |
+
+## Disclaimer
+
+Everything in this fork was quickly hacked together, use at your own risk.
+
 # Broadcast Box
 
 [![License][license-image]][license-url]
