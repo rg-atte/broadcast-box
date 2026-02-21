@@ -17,9 +17,10 @@ const (
 	SSLCert = "SSL_CERT"
 
 	// AUTHORIZATION
-	StreamProfilePath   = "STREAM_PROFILE_PATH"
-	StreamProfilePolicy = "STREAM_PROFILE_POLICY"
-	WebhookURL          = "WEBHOOK_URL"
+	AuthenticatedUserHeader = "AUTHENTICATED_USER_HEADER"
+	StreamProfilePath       = "STREAM_PROFILE_PATH"
+	StreamProfilePolicy     = "STREAM_PROFILE_POLICY"
+	WebhookURL              = "WEBHOOK_URL"
 
 	// FRONTEND
 	FrontendDisabled   = "DISABLE_FRONTEND"
