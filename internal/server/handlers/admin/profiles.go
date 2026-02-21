@@ -7,6 +7,8 @@ import (
 
 	"github.com/glimesh/broadcast-box/internal/server/authorization"
 	"github.com/glimesh/broadcast-box/internal/server/helpers"
+	"github.com/glimesh/broadcast-box/internal/webrtc"
+	"github.com/glimesh/broadcast-box/internal/webrtc/sessions/manager"
 )
 
 // Retrieve all existing profiles
@@ -60,6 +62,11 @@ func ProfilesResetTokenHandler(responseWriter http.ResponseWriter, request *http
 		log.Println("API.Admin.ProfilesResetTokenHandler", err)
 		helpers.LogHTTPError(responseWriter, "Error updating token", http.StatusBadRequest)
 		return
+	}
+
+	session, found := manager.SessionsManager.GetSessionByID(payload.StreamKey)
+	if found == true {
+		webrtc.HandleWHIPDelete(session.Host.Load().ID)
 	}
 
 	responseWriter.WriteHeader(http.StatusOK)
