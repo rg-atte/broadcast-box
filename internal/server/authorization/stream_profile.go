@@ -64,6 +64,17 @@ func CreateProfile(streamKey string) (string, error) {
 	return token, nil
 }
 
+func GetExistingProfileToken(streamKey string) (string, error) {
+	if !isValidStreamKey(streamKey) {
+		log.Println("Authorization: Get existing profile failed due to invalid streamkey", streamKey)
+		return "", fmt.Errorf("streamkey has invalid characters, only numbers, letters, dash and underscore allowed")
+	}
+
+	assureProfilePath()
+
+	return getBearerTokenByStreamKey(streamKey)
+}
+
 // Update a current profile
 func UpdateProfile(token string, motd string, isPublic bool) error {
 	if !hasExistingBearerToken(token) {
