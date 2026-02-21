@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../shared/Button";
 
-const STREAM_TOKEN = "streamToken";
-
 interface Token {
   token: string;
 }
@@ -28,7 +26,6 @@ const StreamTokenView = () => {
       })
       .then((result) => {
         if (result) {
-          localStorage.setItem(STREAM_TOKEN, result["token"]);
           setToken(() => result);
         }
       })
@@ -64,14 +61,7 @@ const StreamTokenView = () => {
   };
 
   useEffect(() => {
-    var token = localStorage.getItem(STREAM_TOKEN);
-    if (token != null) {
-      setToken({
-        token: token,
-      });
-    } else {
-      fetchToken();
-    }
+    fetchToken();
   }, []);
 
   return (
